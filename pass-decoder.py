@@ -21,13 +21,16 @@ try:
       try: 
         with zipfile.ZipFile(path, "r") as zf:
           zf.read(pwd=guess)
-          print(f"Success! The password is: {guess}")
+          endTime = time.time()
           success = True
           break
       except:
         print("\b"*15, end="")
 
-    if not success:
-      print("Password could not be found")
+    if success:
+      print(f"Success! The password is: {guess}. Decoded in {endTime-startTime}s.")
+    else:
+      print("Password could not be found.")
+
 except:
   print("Error, recheck zipfile path")
